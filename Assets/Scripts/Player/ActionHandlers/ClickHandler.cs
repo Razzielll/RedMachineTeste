@@ -14,7 +14,10 @@ namespace Player.ActionHandlers
         public event Action<Vector3> ClickEvent;
         public event Action<Vector3> PointerUpEvent;
         public event Action<Vector3> DragStartEvent;
+        public event Action<Vector3> AlternativeDragStartEvent;
+        public event Action<Vector3> DragContinueEvent;
         public event Action<Vector3> DragEndEvent;
+        public event Action<Vector3> AlternativeDragEndEvent;
 
         private Vector3 _pointerDownPosition;
 
@@ -43,7 +46,7 @@ namespace Player.ActionHandlers
                 if (_isDrag)
                 {
                     DragEndEvent?.Invoke(pointerUpPosition);
-
+                    AlternativeDragEndEvent?.Invoke(pointerUpPosition);
                     _isDrag = false;
                 }
                 else
@@ -54,6 +57,11 @@ namespace Player.ActionHandlers
                 PointerUpEvent?.Invoke(pointerUpPosition);
 
                 _isClick = false;
+            }
+            if (Input.GetMouseButton(0))
+            {
+                var pointerPosition = CameraHolder.Instance.MainCamera.ScreenToWorldPoint(Input.mousePosition);
+                DragContinueEvent?.Invoke(pointerPosition);
             }
         }
 
@@ -66,7 +74,7 @@ namespace Player.ActionHandlers
             if (_clickHoldDuration >= clickToDragDuration)
             {
                 DragStartEvent?.Invoke(_pointerDownPosition);
-
+                AlternativeDragStartEvent?.Invoke(_pointerDownPosition);
                 _isClick = false;
                 _isDrag = true;
             }
@@ -78,6 +86,21 @@ namespace Player.ActionHandlers
 
             DragStartEvent = dragStartEvent;
             DragEndEvent = dragEndEvent;
+        }
+        public void SetDragEventHandlers(Action<Vector3> dragStartEvent, Action<Vector3> dragEndEvent, Action<Vector3> dragContinueEvent)
+        {
+            ClearNewEvents();
+
+            AlternativeDragStartEvent += dragStartEvent;
+            AlternativeDragEndEvent += dragEndEvent;
+            DragContinueEvent += dragContinueEvent;
+        }
+
+        private void ClearNewEvents()
+        {
+            AlternativeDragStartEvent = null;
+            AlternativeDragEndEvent = null;
+            DragContinueEvent = null;
         }
 
         public void ClearEvents()
