@@ -272,7 +272,10 @@ GameObject:
   - component: {fileID: 2040505402}
   - component: {fileID: 2040505405}
   - component: {fileID: 2040505406}
+  - component: {fileID: 2040505409}
+  - component: {fileID: 2040505408}
   - component: {fileID: 2040505407}
+  - component: {fileID: 2040505410}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -402,8 +405,47 @@ MonoBehaviour:
   m_GameObject: {fileID: 2040505401}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 822e7ab82b757a44d8f79baa0612bacd, type: 3}
+  m_Script: {fileID: 11500000, guid: 49d62569c49063f4da9c33fd3da07b90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2040505408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2040505401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dd53098a20b1584f945f413ba5fab24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
   dampingFactor: 0.98
+  borderOffset: 0.1
+--- !u!114 &2040505409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2040505401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c287ffdb3f4c7c64c9dd19fd936f6a56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2040505410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2040505401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 822e7ab82b757a44d8f79baa0612bacd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dampingFactor: 0.98
+  borderOffset: 0.1
