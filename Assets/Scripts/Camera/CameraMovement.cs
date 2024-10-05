@@ -13,7 +13,7 @@ namespace Camera
         [Tooltip("Ограничивает движение элементов относительно границы экрана")]
         [SerializeField] private float borderOffset = 0.1f;
 
-        private Vector3 currentMoveSpeed = Vector3.zero;
+        private Vector3 _currentMoveSpeed = Vector3.zero;
         private UnityEngine.Camera _camera;
         private BoundsCalculator _boundsCalculator;
 
@@ -25,21 +25,21 @@ namespace Camera
 
         private void Update()
         {
-            Vector3 moveDelta = new Vector3(-currentMoveSpeed.x, -currentMoveSpeed.y, 0);
+            Vector3 moveDelta = new Vector3(-_currentMoveSpeed.x, -_currentMoveSpeed.y, 0);
             if (!KeepInSight(moveDelta))
             {
-                currentMoveSpeed = Vector3.zero;
+                _currentMoveSpeed = Vector3.zero;
                 return;
             }
 
-            transform.position = new Vector3(transform.position.x + currentMoveSpeed.x,
-                transform.position.y + currentMoveSpeed.y, transform.position.z);
-            currentMoveSpeed *= dampingFactor;
+            transform.position = new Vector3(transform.position.x + _currentMoveSpeed.x,
+                transform.position.y + _currentMoveSpeed.y, transform.position.z);
+            _currentMoveSpeed *= dampingFactor;
         }
 
         public void SetMoveSpeed(Vector3 speed)
         {
-            currentMoveSpeed = speed;
+            _currentMoveSpeed = speed;
         }
 
         private bool KeepInSight(Vector3 moveDelta)
@@ -72,7 +72,7 @@ namespace Camera
         
         public Vector3 GetCurrentMoveSpeed()
         {
-            return currentMoveSpeed;
+            return _currentMoveSpeed;
         }
     }
 }

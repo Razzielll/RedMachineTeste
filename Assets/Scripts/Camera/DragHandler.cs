@@ -7,7 +7,7 @@ namespace Camera
     public class DragHandler : MonoBehaviour
     {
         private ClickHandler _clickHandler;
-        private Vector3 startPosition = Vector3.zero;
+        private Vector3 _startPosition = Vector3.zero;
         private CameraMovement _cameraMovement;
 
         private void Start()
@@ -21,7 +21,7 @@ namespace Camera
         {
             if (PlayerController.PlayerState == PlayerState.Connecting)
                 return;
-            this.startPosition = startPosition;
+            this._startPosition = startPosition;
             _cameraMovement.SetMoveSpeed(Vector3.zero);
         }
 
@@ -30,7 +30,7 @@ namespace Camera
             if (PlayerController.PlayerState == PlayerState.Connecting)
                 return;
 
-            Vector3 deltaPosition = position - startPosition;
+            Vector3 deltaPosition = position - _startPosition;
             if (deltaPosition != Vector3.zero)
             {
                 float moveValue = _cameraMovement.GetMoveSpeed() * Time.deltaTime;

@@ -7,8 +7,8 @@ namespace Camera
 {
     public class BoundsCalculator : MonoBehaviour
     {
-        private Vector3 minBounds = Vector3.zero;
-        private Vector3 maxBounds = Vector3.zero;
+        private Vector3 _minBounds = Vector3.zero;
+        private Vector3 _maxBounds = Vector3.zero;
 
         private void OnEnable()
         {
@@ -37,24 +37,24 @@ namespace Camera
 
             if (renderers.Count == 0) return;
 
-            minBounds = renderers[0].bounds.min;
-            maxBounds = renderers[0].bounds.max;
+            _minBounds = renderers[0].bounds.min;
+            _maxBounds = renderers[0].bounds.max;
 
             foreach (var boundRenderer in renderers)
             {
-                minBounds = Vector3.Min(minBounds, boundRenderer.bounds.min);
-                maxBounds = Vector3.Max(maxBounds, boundRenderer.bounds.max);
+                _minBounds = Vector3.Min(_minBounds, boundRenderer.bounds.min);
+                _maxBounds = Vector3.Max(_maxBounds, boundRenderer.bounds.max);
             }
         }
 
         public Vector3 GetMinBounds()
         {
-            return minBounds;
+            return _minBounds;
         }
 
         public Vector3 GetMaxBounds()
         {
-            return maxBounds;
+            return _maxBounds;
         }
     }
 }

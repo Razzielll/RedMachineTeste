@@ -58,17 +58,21 @@ namespace Player.ActionHandlers
 
                 _isClick = false;
             }
-            if (Input.GetMouseButton(0))
-            {
-                var pointerPosition = CameraHolder.Instance.MainCamera.ScreenToWorldPoint(Input.mousePosition);
-                DragContinueEvent?.Invoke(pointerPosition);
-            }
         }
 
         private void LateUpdate()
         {
+
             if (!_isClick)
+            {
+                if (Input.GetMouseButton(0))
+                {
+                    var pointerPosition = CameraHolder.Instance.MainCamera.ScreenToWorldPoint(Input.mousePosition);
+                    DragContinueEvent?.Invoke(pointerPosition);
+                }
                 return;
+            }
+
 
             _clickHoldDuration += Time.deltaTime;
             if (_clickHoldDuration >= clickToDragDuration)

@@ -420,8 +420,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dd53098a20b1584f945f413ba5fab24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
-  dampingFactor: 0.98
+  moveSpeed: 60
+  dampingFactor: 0.986
   borderOffset: 0.1
 --- !u!114 &2040505409
 MonoBehaviour:
@@ -447,5 +447,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 822e7ab82b757a44d8f79baa0612bacd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dampingFactor: 0.98
-  borderOffset: 0.1
